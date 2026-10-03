@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --radius: .625rem;
+  --background: oklch(98.5% .005 90); --foreground: oklch(22% .02 25);
+  --surface: oklch(96.8% .008 90); --card: oklch(100% 0 0);
+  --primary: oklch(52% .21 27); --primary-foreground: oklch(98.5% .005 90);
+  --secondary: oklch(95.5% .012 25); --secondary-foreground: oklch(30% .09 27);
+  --muted: oklch(95.8% .008 30); --muted-foreground: oklch(50% .022 25);
+  --accent: oklch(56% .21 27); --destructive: oklch(55% .19 27);
+  --warning: oklch(72% .14 72);
+  --estimate: oklch(95.5% .035 85); --estimate-foreground: oklch(42% .08 62);
+  --verified: oklch(93% .05 170); --verified-foreground: oklch(38% .07 173);
+  --border: oklch(90% .014 30); --input: oklch(90% .014 30); --ring: oklch(56% .21 27);
+  --sidebar: oklch(24% .03 25); --sidebar-foreground: oklch(93% .008 30);
+  --sidebar-border: oklch(33% .03 25); --sidebar-accent: oklch(52% .21 27);
+}
+.dark {
+  --background: oklch(19% .02 25); --foreground: oklch(96% .006 30);
+  --surface: oklch(23% .022 25); --card: oklch(23% .022 25);
+  --primary: oklch(62% .21 27); --secondary: oklch(29% .03 25); --secondary-foreground: oklch(96% .008 250);
+  --muted: oklch(29% .03 25); --muted-foreground: oklch(72% .018 30);
+  --border: oklch(100% 0 0/.12); --input: oklch(100% 0 0/.16);
+}
+
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-surface: var(--surface); --color-card: var(--card);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-destructive: var(--destructive); --color-warning: var(--warning);
+  --color-estimate: var(--estimate); --color-estimate-foreground: var(--estimate-foreground);
+  --color-verified: var(--verified); --color-verified-foreground: var(--verified-foreground);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border); --color-sidebar-accent: var(--sidebar-accent);
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-lg: var(--radius); --radius-md: calc(var(--radius) - 2px); --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { scroll-behavior: smooth; }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+.bg-grid {
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 44px 44px; opacity: .45;
+}
+.panel { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); box-shadow: 0 1px 2px oklch(22% .02 25 / .05); }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; border-radius: var(--radius-md); font-weight:600; font-size:.875rem; padding:.55rem 1rem; transition:.15s; cursor:pointer; }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+.btn-primary { background: var(--primary); color: var(--primary-foreground); box-shadow: 0 1px 2px oklch(40% .2 27 / .35); }
+.btn-primary:hover:not(:disabled) { background: var(--accent); }
+.btn-outline { background: var(--card); border:1px solid var(--border); }
+.btn-outline:hover:not(:disabled) { background: var(--muted); }
+.btn-lg { padding:.8rem 1.4rem; font-size:.95rem; }
+.input { width:100%; background: var(--card); border:1px solid var(--input); border-radius: var(--radius-md); padding:.55rem .75rem; font-size:.875rem; outline:none; }
+.input:focus { border-color: var(--ring); box-shadow: 0 0 0 3px oklch(56% .21 27 / .15); }
+.label { display:block; font-size:.78rem; font-weight:600; margin-bottom:.3rem; }
+.eyebrow { font-family: var(--font-mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
